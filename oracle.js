@@ -1,28 +1,16 @@
 const GAMES = {
     megaMillions: {
         spanID: "mega-millions",
-        choices: [
+        pools: [
             {
+                name: "White Balls",
+                numPicks: 5,
                 min: 1,
                 max: 70
             },
             {
-                min: 1,
-                max: 70
-            },
-            {
-                min: 1,
-                max: 70
-            },
-            {
-                min: 1,
-                max: 70
-            },
-            {
-                min: 1,
-                max: 70
-            },
-            {
+                name: "Mega Ball",
+                numPicks: 1,
                 min: 1,
                 max: 25
             },
@@ -36,18 +24,27 @@ function isWithinRange(range, num) {
 }
 
 function chooseNumsForGame(gameDefinition, randomSourceArray) {
+    console.log("in choose");
     let i = 0;
     let result = [];
-    for (choice of gameDefinition.choices) {
-        while (i < randomSourceArray.length &&
-            !isWithinRange(choice, randomSourceArray[i])) {
-                i++;
+    for (let pool of gameDefinition.pools) {
+        let poolResult = [];
+        for (let pickNum = 1; pickNum <= pool.numPicks; pickNum++) {
+            if (i >= randomSourceArray.length) {
+                throw 'not enough source numbers met criteria';
             }
-        if (i >= randomSourceArray.length) {
-            throw 'not enough source numbers met criteria';
+            let tempPick = randomSourceArray[i];
+            while (
+                !isWithinRange(pool, tempPick) ||
+                poolResult.includes(tempPick)
+            ) {
+                i++;
+                tempPick = randomSourceArray[i];
+            }
+            poolResult.push(tempPick);
+            console.log(poolResult);
         }
-        result.push(randomSourceArray[i]);
-        i++;
+        result.push(poolResult);
     }
     return result;
 }
@@ -55,8 +52,13 @@ function chooseNumsForGame(gameDefinition, randomSourceArray) {
 function populateGameChoices(randomSourceArray) {
     for (k in GAMES) {
         let gameDefinition = GAMES[k];
-        let nums = chooseNumsForGame(gameDefinition, randomSourceArray);
-        document.getElementById(gameDefinition.spanID).innerHTML = nums.join(" ");
+        let results = chooseNumsForGame(gameDefinition, randomSourceArray);
+        let resultString = ""
+        for (const [i, pool] of results.entries()) {
+            resultString += GAMES[k].pools[i].name + ": ";
+            resultString += pool.join(" ") + "<br />";
+        }
+        document.getElementById(gameDefinition.spanID).innerHTML = resultString;
     }
 }
 
