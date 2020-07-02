@@ -55,7 +55,7 @@ function populateGameChoices(randomSourceArray) {
         let results = chooseNumsForGame(gameDefinition, randomSourceArray);
         let resultString = ""
         for (const [i, pool] of results.entries()) {
-            resultString += GAMES[k].pools[i].name + ": ";
+            resultString += gameDefinition.pools[i].name + ": ";
             resultString += pool.join(" ") + "<br />";
         }
         document.getElementById(gameDefinition.spanID).innerHTML = resultString;
