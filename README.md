@@ -9,6 +9,8 @@ The Multiverse Oracle uses the [ANU Quantum Random Numbers Server](http://qrng.a
 
 ## Phase I: Win the Lottery
 
+Ready to use on [github pages](https://jemaltieri.github.io/multiverseoracle/)
+
 To run locally:
 ```bash
 git clone https://github.com/jemaltieri/multiverseoracle.git
