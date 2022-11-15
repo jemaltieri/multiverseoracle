@@ -9,15 +9,14 @@ The Multiverse Oracle uses the [ANU Quantum Random Numbers Server](http://qrng.a
 
 ## Phase I: Win the Lottery
 
-Ready to use on [github pages](https://jemaltieri.github.io/multiverseoracle/)
+Ready to use at <https://multiverse.jem.space>
 
 To run locally:
 ```bash
-git clone https://github.com/jemaltieri/multiverseoracle.git
-cd multiverseoracle
-python3 -m http.server
+npm install
+npm run start
 ```
-Browse to `localhost:8000/index.html`
+Browse to `localhost:3000/
 Click the `Consult Oracle` link to choose lottery numbers that are *_guaranteed_* to win... (in a very small but non-zero percentage of future worlds).
 
 ## Phase II: Give the Multiverse a Voice
