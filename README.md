@@ -16,7 +16,7 @@ To run locally:
 npm install
 npm run start
 ```
-Browse to `localhost:3000/
+Browse to `localhost:3000/`
 Click the `Consult Oracle` link to choose lottery numbers that are *_guaranteed_* to win... (in a very small but non-zero percentage of future worlds).
 
 ## Phase II: Give the Multiverse a Voice
