@@ -4,20 +4,31 @@ import React, { useState } from 'react';
 
 const FETCH_URL = 'https://qrng.anu.edu.au/API/jsonI.php?length=1024&type=uint8'
 
-const MEGAMILLIONS = [
-  {
-      name: "White Balls",
-      numPicks: 5,
-      min: 1,
-      max: 70
-  },
-  {
-      name: "Mega Ball",
-      numPicks: 1,
-      min: 1,
-      max: 25
-  },
-];
+const MEGAMILLIONS = {
+  name: "Mega Millions",
+  gameStructure: [
+    {
+        name: "White Balls",
+        numPicks: 5,
+        min: 1,
+        max: 70
+    },
+    {
+        name: "Mega Ball",
+        numPicks: 1,
+        min: 1,
+        max: 25
+    },
+  ],
+};
+
+const GAMES = {
+  megaMillions: MEGAMILLIONS
+};
+
+const GameSelectOption = ({ gameKey }) => {
+  return <option value="gameKey">{GAMES[{gamekey}][{name}]}</option>
+}
 
 function GameDisplay({pickedGame}) {
   if (pickedGame == null) {
@@ -133,8 +144,14 @@ function Oracle() {
       <GameDisplay pickedGame={pickedGame} />
     )
   }
+  const gameOptions = Object.keys(GAMES).forEach((key, _) => (
+    <GameSelectOption gameKey={key} />
+  ))
   return (
     <form id="mainform">
+      <select>
+        {gameOptions}
+      </select>
       <ConsultButton 
         onClick={handleConsult}
         requestStarted={requestStarted}
